@@ -1,3 +1,3 @@
 from manim import *
 
-HALF_DOWN = DOWN / 2
+HALF_DOWN = DOWN / 1.5

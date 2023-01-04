@@ -19,24 +19,39 @@ class SeqAction(AnimationGroup):
         gift: SeqObject,
         target: SeqActor
     ):
-        sub_arr, sub_ani = subject.time_elapse()
-        obj_arr, obj_ani = target.time_elapse()
-        yield Succession(
-            AnimationGroup(Create(sub_arr), Create(obj_arr)),
-            AnimationGroup(sub_ani, obj_ani)
-        )
-
-        act_start = Dot(sub_arr.get_end())
+        if subject is target:
+            # We don't use Succession here because
+            # we need sub_arr to be different lines
+            # than obj_arr, however, they wind up
+            # going to the same place unless the anime
+            # has already run, thus we just yield instead
+            sub_arr, sub_ani = subject.time_elapse()
+            yield sub_ani
+            obj_arr, obj_ani = target.time_elapse()
+            yield obj_ani
+        else:
+            sub_arr, sub_ani = subject.time_elapse()
+            obj_arr, obj_ani = target.time_elapse()
+            yield AnimationGroup(sub_ani, obj_ani)
+        act_start = Dot(sub_arr.get_end(), radius=0.05)
+        act_end = Dot(obj_arr.get_end(), radius=0.05)
         is_move_left = (obj_arr.get_end() - sub_arr.get_end())[0] > 0.0
         gift.move_to(act_start.get_center(), aligned_edge=(RIGHT if is_move_left else LEFT))
-        act_end = Dot(obj_arr.get_end())
-        iobj_planned_path = Arrow(
-            start=act_start.get_center(),
-            end=act_end.get_center(),
-            buff=0,
-            stroke_width=1,
-            max_tip_length_to_length_ratio=0.2
-        )
+
+        if subject is target:
+            iobj_planned_path = CurvedArrow(
+                start_point=act_start.get_center(),
+                end_point=act_end.get_center(),
+                stroke_width=1
+            )
+        else:
+            iobj_planned_path = Arrow(
+                start=act_start.get_center(),
+                end=act_end.get_center(),
+                buff=0,
+                stroke_width=1,
+                max_tip_length_to_length_ratio=0.2
+            )
         iobj_moved_path = TracedPath(gift.get_center)
         mid_point = utils.space_ops.midpoint(act_start.get_center(), act_end.get_center())
         post_move_gift_label = gift.create_obj_label(font_size=16).move_to(mid_point, aligned_edge=UP)

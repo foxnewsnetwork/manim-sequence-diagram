@@ -9,6 +9,9 @@ packages = [{include = "manim_sequence_diagram", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.8"
 
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pylint = "*"
 
 [build-system]
 requires = ["poetry-core"]
