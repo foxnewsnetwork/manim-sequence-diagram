@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "manim-sequence-diagram"
+version = "0.1.0"
+description = "Manim extension to generate UML sequence diagrams"
+authors = ["Thomas Chen <tom.chen@sony.com>"]
+readme = "README.md"
+packages = [{include = "manim_sequence_diagram", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins."manim.plugins"]
+"manim_sequence_diagram" = "manim_sequence_diagram"
