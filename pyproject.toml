@@ -8,7 +8,7 @@ packages = [{include = "manim_sequence_diagram", from = "src"}]
 repository = "https://github.com/foxnewsnetwork/manim-sequence-diagram"
 documentation="https://github.com/foxnewsnetwork/manim-sequence-diagram"
 classifiers= [
-    "Development Status :: Beta",
+    "Development Status :: 3 - Alpha",
     "License :: OSI Approved :: MIT License",
     "Topic :: Scientific/Engineering",
     "Topic :: Multimedia :: Video",
