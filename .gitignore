@@ -54,3 +54,5 @@ MANIFEST
 .python-version
 
 media/
+
+__pycache__
