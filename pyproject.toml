@@ -5,6 +5,20 @@ description = "Manim extension to generate UML sequence diagrams"
 authors = ["Thomas Chen <tom.chen@sony.com>"]
 readme = "README.md"
 packages = [{include = "manim_sequence_diagram", from = "src"}]
+repository = "https://github.com/foxnewsnetwork/manim-sequence-diagram"
+documentation="https://github.com/foxnewsnetwork/manim-sequence-diagram"
+classifiers= [
+    "Development Status :: Beta",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Multimedia :: Graphics",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+	  "Programming Language :: Python :: 3.9",
+    "Natural Language :: English",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
